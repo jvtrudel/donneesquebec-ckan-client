@@ -1,11 +1,11 @@
 #! /bin/bash
 
-# default parameters
+echo "# default parameters"
 this="donneesquebec-ckan-client"
 dirs=("php")
 
 
-# get args and set directories
+echo "# get args and set directories"
 echo $1
 
 #if [[ "$1" -eq  "0" ]]
@@ -23,26 +23,36 @@ if [ ! -d $data.wiz ]; then
 fi
 
 
-# set configuration files
+echo "# set configuration files"
 
 for dir in ${dirs[@]}; do
   echo "dirs+="$dir >> config.$data
+  if [ ! -d $data.wiz/$dir ]; then
+     mkdir $data.wiz/$dir 
+  fi
 done
 
 
-# obtenir la liste des dépendances
+echo "# obtenir la liste des dépendances"
 
 source $this/config.dependances
 
-# install dependances via git
+echo "# install dependances via git"
 
-for git in "${!gits[@]}"; do
-   echo $git
-  if [ ! -d $git ]; then
-    git clone "${gits[$git]}"
+for index in "${gits[@]}" ; do
+    K="${index%%::*}"
+    V="${index##*::}"
+  if [ ! -d $K ]; then
+    git clone $V
   fi
 done
 
 
 
+
 # install dependances avec composer
+
+# transfert 
+
+cp Ckan_client-PHP/Ckan_client.php $data.wiz/php/.
+
