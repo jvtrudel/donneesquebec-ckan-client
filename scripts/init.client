@@ -2,7 +2,7 @@
 
 echo "# default parameters"
 this="donneesquebec-ckan-client"
-dirs=("php")
+dirs=("php" "lib" "lib/php_markdown")
 
 
 echo "# get args and set directories"
@@ -56,5 +56,4 @@ done
 
 # À le pièce pour l'instant ...
 cp Ckan_client-PHP/Ckan_client.php $data.wiz/php/.
-mkdir $data.wiz/lib/php_markdown
 cp Ckan_client-PHP/lib/php_markdown/markdown.php $data.wiz/lib/php_markdown/.
