@@ -1,0 +1,48 @@
+#! /bin/bash
+
+# default parameters
+this="donneesquebec-ckan-client"
+dirs=("php")
+
+
+# get args and set directories
+echo $1
+
+#if [[ "$1" -eq  "0" ]]
+#  then
+#    echo "vous devez spécifier le répertoire de travail"
+#    exit 1
+#fi
+data=$1
+
+
+
+
+if [ ! -d $data.wiz ]; then
+   mkdir $data.wiz
+fi
+
+
+# set configuration files
+
+for dir in ${dirs[@]}; do
+  echo "dirs+="$dir >> config.$data
+done
+
+
+# obtenir la liste des dépendances
+
+source $this/config.dependances
+
+# install dependances via git
+
+for git in "${!gits[@]}"; do
+   echo $git
+  if [ ! -d $git ]; then
+    git clone "${gits[$git]}"
+  fi
+done
+
+
+
+# install dependances avec composer

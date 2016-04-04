@@ -1,0 +1,4 @@
+
+declare -A gits=(
+   [Ckan_client-PHP]Ckan_client-PHP="https://github.com/jeffreybarke/Ckan_client-PHP.git"
+ )
