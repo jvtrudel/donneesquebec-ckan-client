@@ -28,7 +28,7 @@ echo "# set configuration files"
 for dir in ${dirs[@]}; do
   echo "dirs+="$dir >> config.$data
   if [ ! -d $data.wiz/$dir ]; then
-     mkdir $data.wiz/$dir 
+     mkdir $data.wiz/$dir
   fi
 done
 
@@ -52,7 +52,9 @@ done
 
 # install dependances avec composer
 
-# transfert 
+# transfert
 
+# À le pièce pour l'instant ...
 cp Ckan_client-PHP/Ckan_client.php $data.wiz/php/.
-
+mkdir $data.wiz/lib/php_markdown
+cp Ckan_client-PHP/lib/php_markdown/markdown.php $data.wiz/lib/php_markdown/.
